@@ -1,14 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import posthog from "posthog-js";
 
 const ExploreBtn = () => {
+  const handleClick = () => {
+    posthog.capture("explore_events_clicked", {
+      button_location: "hero_section",
+      target_section: "events",
+    });
+  };
+
   return (
     <button
       type="button"
       id="explore-btn"
       className="mt-7 mx-auto"
-      onClick={() => console.log("Clicked")}
+      onClick={handleClick}
     >
       <a href="#events">
         Explore More
